@@ -47,3 +47,9 @@ class Item:
 
     def __repr__(self):
         return "%s, %s, %s" % (self.name, self.sell_in, self.quality)
+
+    def __eq__(self, __o: object) -> bool:
+        is_same_name = self.name == __o.name
+        is_same_sell_in = self.sell_in == __o.sell_in
+        is_same_quality = self.quality == __o.quality
+        return is_same_name and is_same_sell_in and is_same_quality
