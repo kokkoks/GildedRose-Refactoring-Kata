@@ -2,7 +2,7 @@ from gilded_rose import GildedRose, Item
 from nose.tools import assert_equal
 
 
-class GildedRoseTest:
+class TestGildedRose:
     def __init__(self) -> None:
         self.items = [
             Item(name="+5 Dexterity Vest", sell_in=10, quality=20),
@@ -24,7 +24,7 @@ class GildedRoseTest:
 
     def test_one_day_passed(self):
         expected_result = [
-            Item(name="+5 Dexterity Vest", sell_in=10, quality=20),
+            Item(name="+5 Dexterity Vest", sell_in=9, quality=19),
             Item(name="Aged Brie", sell_in=1, quality=1),
             Item(name="Elixir of the Mongoose", sell_in=4, quality=6),
             Item(name="Sulfuras, Hand of Ragnaros", sell_in=-1, quality=78),
@@ -40,5 +40,6 @@ class GildedRoseTest:
             ),
             Item(name="Conjured Mana Cake", sell_in=2, quality=5),  # <-- :O
         ]
-        GildedRose(self.items).update_quality()
+        gilded_rose = GildedRose(self.items)
+        gilded_rose.update_quality()
         assert_equal(expected_result, self.items)
