@@ -10,30 +10,31 @@ class GildedRose(object):
 
     def update_quality(self):
         for item in self.items:
-            if item.name != AGED_BRIED and item.name != BACKSTAGE_PASSES:
-                if item.quality > 0:
-                    if item.name != BACKSTAGE_PASSES:
-                        item.quality = item.quality - 1
+            if (
+                item.name != AGED_BRIED
+                and item.name != BACKSTAGE_PASSES
+                and item.quality > 0
+            ):
+                item.quality = item.quality - 1
             else:
+                # Item is aged_bried or backstage_passes
                 if item.quality < 50:
                     item.quality = item.quality + 1
                     if item.name == BACKSTAGE_PASSES:
-                        if item.sell_in < 11:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
-                        if item.sell_in < 6:
-                            if item.quality < 50:
-                                item.quality = item.quality + 1
+                        if item.sell_in < 11 and item.quality < 50:
+                            item.quality = item.quality + 1
+                        if item.sell_in < 6 and item.quality < 50:
+                            item.quality = item.quality + 1
+
             if item.name != BACKSTAGE_PASSES:
                 item.sell_in = item.sell_in - 1
             if item.sell_in < 0:
-                if item.name != "Aged Brie":
+                if item.name != AGED_BRIED:
                     if item.name != BACKSTAGE_PASSES:
                         if item.quality > 0:
-                            if item.name != BACKSTAGE_PASSES:
-                                item.quality = item.quality - 1
+                            item.quality = item.quality - 1
                     else:
-                        item.quality = item.quality - item.quality
+                        item.quality = 0
                 else:
                     if item.quality < 50:
                         item.quality = item.quality + 1
