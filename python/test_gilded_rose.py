@@ -79,8 +79,8 @@ class TestGildedRose:
         assert_equal(expected_result, gilded_rose.items[0])
 
     def test_sulfuras_with_sell_in_more_than_zero(self):
-        list_item = [Item(name=SULFURAS, sell_in=2, quality=78)]
-        expected_result = Item(name=SULFURAS, sell_in=1, quality=78)
+        list_item = [Item(name=SULFURAS, sell_in=2, quality=80)]
+        expected_result = Item(name=SULFURAS, sell_in=1, quality=80)
 
         gilded_rose = GildedRose(list_item)
         gilded_rose.update_quality()
@@ -88,8 +88,8 @@ class TestGildedRose:
         assert_equal(expected_result, gilded_rose.items[0])
 
     def test_sulfuras_with_sell_in_less_than_zero(self):
-        list_item = [Item(name=SULFURAS, sell_in=0, quality=78)]
-        expected_result = Item(name=SULFURAS, sell_in=-1, quality=78)
+        list_item = [Item(name=SULFURAS, sell_in=0, quality=80)]
+        expected_result = Item(name=SULFURAS, sell_in=-1, quality=80)
 
         gilded_rose = GildedRose(list_item)
         gilded_rose.update_quality()
@@ -107,7 +107,7 @@ class TestGildedRose:
 
     def test_conjured_with_sell_in_less_than_zero(self):
         list_item = [Item(name="Conjured Mana Cake", sell_in=0, quality=20)]
-        expected_result = Item(name="Conjured Mana Cake", sell_in=-1, quality=0)
+        expected_result = Item(name="Conjured Mana Cake", sell_in=-1, quality=16)
 
         gilded_rose = GildedRose(list_item)
         gilded_rose.update_quality()
