@@ -28,8 +28,8 @@ class GildedRose(object):
             elif item.name == AGED_BRIED and item.quality < MAX_QUALITY:
                 item.quality = item.quality + 1
 
-            if item.name != BACKSTAGE_PASSES:
-                item.sell_in = item.sell_in - 1
+            item.sell_in = item.sell_in - 1
+
             if item.sell_in < 0:
                 if item.name != AGED_BRIED:
                     if item.name != BACKSTAGE_PASSES:
@@ -40,6 +40,14 @@ class GildedRose(object):
                 else:
                     if item.quality < MAX_QUALITY:
                         item.quality = item.quality + 1
+
+            # if item.sell_in < 0:
+            #     if item.name == AGED_BRIED and item.quality < MAX_QUALITY:
+            #         item.quality += 1
+            #     elif item.name == BACKSTAGE_PASSES:
+            #         item.quality = 0
+            #     elif item.quality > MIN_QUALITY:
+            #         item.quality -= 1
 
 
 class Item:
