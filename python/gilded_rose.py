@@ -12,6 +12,10 @@ class GildedRose(object):
     # TODO: seperate update_quality & update_sell_in method
     def update_quality(self):
         for item in self.items:
+            if item.name == SULFURAS:
+                item.sell_in -= 1
+                continue
+
             if (
                 item.name != AGED_BRIED
                 and item.name != BACKSTAGE_PASSES
@@ -37,17 +41,6 @@ class GildedRose(object):
                             item.quality = item.quality - 1
                     else:
                         item.quality = 0
-                else:
-                    if item.quality < MAX_QUALITY:
-                        item.quality = item.quality + 1
-
-            # if item.sell_in < 0:
-            #     if item.name == AGED_BRIED and item.quality < MAX_QUALITY:
-            #         item.quality += 1
-            #     elif item.name == BACKSTAGE_PASSES:
-            #         item.quality = 0
-            #     elif item.quality > MIN_QUALITY:
-            #         item.quality -= 1
 
 
 class Item:
