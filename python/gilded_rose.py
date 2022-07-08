@@ -2,6 +2,7 @@
 AGED_BRIED = "Aged Brie"
 BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert"
 SULFURAS = "Sulfuras, Hand of Ragnaros"
+CONJURED = "Conjured Mana Cake"
 MAX_QUALITY = 50
 
 
@@ -21,7 +22,10 @@ class GildedRose(object):
                 and item.name != BACKSTAGE_PASSES
                 and item.quality > 0
             ):
-                item.quality = item.quality - 1
+                if item.name == CONJURED:
+                    item.quality -= 2
+                else:
+                    item.quality = item.quality - 1
             elif item.name == BACKSTAGE_PASSES and item.quality < MAX_QUALITY:
                 if item.sell_in < 6:
                     item.quality = min(item.quality + 3, MAX_QUALITY)
@@ -38,7 +42,10 @@ class GildedRose(object):
                 if item.name != AGED_BRIED:
                     if item.name != BACKSTAGE_PASSES:
                         if item.quality > 0:
-                            item.quality = item.quality - 1
+                            if item.name == CONJURED:
+                                item.quality -= 2
+                            else:
+                                item.quality = item.quality - 1
                     else:
                         item.quality = 0
 
