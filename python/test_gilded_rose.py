@@ -113,3 +113,11 @@ class TestGildedRose:
         gilded_rose.update_quality()
 
         assert_equal(expected_result, gilded_rose.items[0])
+
+    def test_conjured_quality_is_one_with_sell_in_less_than_zero(self):
+        list_item = [Item(name="Conjured Mana Cake", sell_in=0, quality=1)]
+        expected_result = Item(name="Conjured Mana Cake", sell_in=-1, quality=0)
+
+        gilded_rose = GildedRose(list_item)
+        gilded_rose.update_quality()
+        assert_equal(expected_result, gilded_rose.items[0])
